@@ -1,0 +1,549 @@
+   
+
+    이해한 개념    
+
+ 
+
+   git은 여러 사용자가 하나의 코드를 수정할 수 있게 해주는 것이다. /GUI를 사용하는 경우도 있음
+
+   커맨드 라인을 통해 명령을 입력 받는다.
+
+   내가 받고 수정한 파일은 임시로 저장이 되며 이것을 master에게 보내면 Merge-합쳐진다.
+
+   수정한 것을 알아볼 수 있게 꼬리표를 붙이거나 버전을 따로 명시
+
+   되돌리기도 가능
+
+ 
+
+ 
+
+    할 수 있는 것
+
+ 
+
+    GUI를 이용한 경로 탐색...
+
+    새로운 저장소 만들기
+
+     
+
+ 
+
+2.
+
+ 
+
+>>> 5+9
+
+14
+
+>>> 200-45
+
+155
+
+>>> 17*12
+
+204
+
+>>> 5042/45
+
+112.04444444444445
+
+ 
+
+단순 계산 , 소숫점까지 되는 성능좋음
+
+ 
+
+ 21/45
+
+0.4666666666666667
+
+>>> 25//7
+
+3
+
+>>> 5/2
+
+2.5
+
+>>> 5//2
+
+2
+
+>>> 8%3
+
+2
+
+>>> 9.9%2
+
+1.9000000000000004
+
+>>> 42%5.2
+
+0.3999999999999986
+
+ 
+
+나머지 정리도 가능, 몪도 가능. 나머지를 소숫점까지 가능
+
+ 
+
+>>> p
+
+3.141592
+
+>>> print(p)
+
+3.141592
+
+>>> r=4
+
+>>> area=p*r**2
+
+>>> print(area)
+
+50.265472
+
+>>> area
+
+50.265472
+
+>>> r=10
+
+>>> area
+
+50.265472
+
+ 
+
+변수 저장가능, 편리해짐 , alt+p 보다 보기 쉬움 
+
+ 
+
+>>> name1 = "홍찬우"
+
+>>> name2 = "백상현"
+
+>>> name1
+
+'홍찬우'
+
+>>> name2
+
+'백상현'
+
+>>> name3 = '김계한'
+
+>>> name3
+
+'김계한'
+
+ 
+
+문자도 가능, 따음표 부분 없는게 쉬움
+
+ 
+
+>>> type(name1)
+
+<class 'str'>
+
+>>> type(p)
+
+<class 'float'>
+
+>>> type(r)
+
+<class 'int'>
+
+ 
+
+타입이 여러가지, 내가 정의를 안해도 되서 편함
+
+ 
+
+>>> 100>1
+
+True
+
+>>> 1>100
+
+False
+
+>>> 234>-234
+
+True
+
+>>> a=123>123
+
+>>> a
+
+False
+
+>>> a-123>124
+
+False
+
+>>> a
+
+False
+
+>>> type(a)
+
+<class 'bool'>
+
+ 
+
+명제도 가능
+
+ 
+
+>>> first="CHANWOO"
+
+>>> last="HONG"
+
+>>> name=first+" "+last
+
+>>> name
+
+'CHANWOO HONG'
+
+>>> name*2
+
+'CHANWOO HONGCHANWOO HONG'
+
+>>> name[0]
+
+'C'
+
+>>> name[4]
+
+'W'
+
+>>> name[-22]
+
+Traceback (most recent call last):
+
+  File "<pyshell#53>", line 1, in <module>
+
+    name[-22]
+
+IndexError: string index out of range
+
+>>> name[-1]
+
+'G'
+
+>>> name[-2]
+
+'N'
+
+ 
+
+두개의 변수를 더할 수 있음, 집합 같다, 순서를 찾아서 한글자 출력가능, 곱도 가능
+
+ 
+
+>>> title="Python 2D Game Programming"
+
+>>> title[0:6]
+
+'Python'
+
+>>> title[7:9]
+
+'2D'
+
+>>> title[10:15]
+
+'Game '
+
+>>> title[16:35]
+
+'rogramming'
+
+>>> title[15:40]
+
+'Programming'
+
+>>> title[-11:]
+
+'Programming'
+
+>>> title[::2]
+
+'Pto DGm rgamn'
+
+>>> title[::3]
+
+'Ph  mPgmn'
+
+>>> title[::-1]
+
+'gnimmargorP emaG D2 nohtyP'
+
+>>> title[::-2]
+
+'gimroPea 2nhy'
+
+>>> 
+
+ 
+
+문장을 읽는 위치를 조정가능, 거꾸로도 읽을수 있음
+
+ 
+
+>>> twice=['momo','sana','zwi']
+
+>>> fromis=['nagyung','hayoung','jiheon']
+
+>>> twice.append('jihyo')
+
+>>> twice
+
+['momo', 'sana', 'zwi', 'jihyo']
+
+>>> twice.sort()
+
+>>> twice
+
+['jihyo', 'momo', 'sana', 'zwi']
+
+>>> len(twice)
+
+4
+
+>>> unite=twice+fromis
+
+>>> unite
+
+['jihyo', 'momo', 'sana', 'zwi', 'nagyung', 'hayoung', 'jiheon']
+
+>>> unite.remove('zwi')
+
+>>> unite
+
+['jihyo', 'momo', 'sana', 'nagyung', 'hayoung', 'jiheon']
+
+>>> unite[0]
+
+'jihyo'
+
+>>> unite[-1]
+
+'jiheon'
+
+>>> unite[:2]
+
+['jihyo', 'momo']
+
+>>> unite[-3:]
+
+['nagyung', 'hayoung', 'jiheon']
+
+ 
+
+클래스 구현도 가능, c++과 유사한것 같음, 보기 쉬움
+
+ 
+
+ 
+
+>>> score={'momo':80,'zwi':20,'sana':50}
+
+>>> type(score)
+
+<class 'dict'>
+
+>>> score['momo']
+
+80
+
+>>> score['zwi']
+
+20
+
+>>> score['sana']
+
+50
+
+>>> score['jihyo']
+
+Traceback (most recent call last):
+
+  File "<pyshell#114>", line 1, in <module>
+
+    score['jihyo']
+
+KeyError: 'jihyo'
+
+>>> score['jihyo']=100
+
+>>> score
+
+{'momo': 80, 'zwi': 20, 'sana': 50, 'jihyo': 100}
+
+>>> del score['jihyo']
+
+>>> score
+
+{'momo': 80, 'zwi': 20, 'sana': 50}
+
+>>> score.keys()
+
+dict_keys(['momo', 'zwi', 'sana'])
+
+>>> score.values()
+
+dict_values([80, 20, 50])
+
+>>> 'zwi' in score
+
+True
+
+>>> 'jihyo' in score
+
+False
+
+>>> 
+
+>>> score.clear()
+
+>>> score
+
+{}
+
+ 
+
+클래스 요소만 뽑아서 출력 가능, 클래스 기능 같이 사용 가능 한 것 같음, 명제도 가능 
+
+ 
+
+>>> t1=(1,2,3)
+
+>>> t2=(1,)
+
+>>> t3=()
+
+>>> t4=1,2,3,4
+
+>>> t4
+
+(1, 2, 3, 4)
+
+>>> type(t4)
+
+<class 'tuple'>
+
+>>> t5=(1,'a',"park",(1,2))
+
+>>> t1[1:]
+
+(2, 3)
+
+>>> t1[2:]
+
+(3,)
+
+>>> t1+t5
+
+(1, 2, 3, 1, 'a', 'park', (1, 2))
+
+>>> t4*t4
+
+Traceback (most recent call last):
+
+  File "<pyshell#142>", line 1, in <module>
+
+    t4*t4
+
+TypeError: can't multiply sequence by non-int of type 'tuple'
+
+>>> t4*2
+
+(1, 2, 3, 4, 1, 2, 3, 4)
+
+>>> s1={1,2,3}
+
+>>> type(s1)
+
+<class 'set'>
+
+>>> s1
+
+{1, 2, 3}
+
+>>> s1={1,2,3,4}
+
+>>> s1
+
+{1, 2, 3, 4}
+
+>>> s1={1,2,2,4}
+
+>>> s1
+
+{1, 2, 4}
+
+>>> l1=[1,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,5,5,5,5,5,5,6,6,6,6,6]
+
+>>> s1=set(l1)
+
+>>> s1
+
+{1, 2, 3, 5, 6}
+
+>>> s1
+
+{1, 2, 3, 5, 6}
+
+>>> s2={3,5,6,7}
+
+>>> s1+s2
+
+Traceback (most recent call last):
+
+  File "<pyshell#157>", line 1, in <module>
+
+    s1+s2
+
+TypeError: unsupported operand type(s) for +: 'set' and 'set'
+
+>>> s1|s2
+
+{1, 2, 3, 5, 6, 7}
+
+>>> s1&s2
+
+{3, 5, 6}
+
+>>> s2-s1
+
+{7}
+
+>>> s1-s2
+
+{1, 2}
+
+>>> s1.add(8)
+
+>>> s1
+
+{1, 2, 3, 5, 6, 8}
+
+>>> s2.remove(6)
+
+>>> s2
+
+{3, 5, 7}
+
+>>> 
+
+ 
+
+변수타입을 여러개 섞어도 됨 클래스 유지 됨 , 여러개를 쓸때는 타입을 정의하면 내가 원하는 것을 만들 수 있음
+
+여기가 좀 복잡한데 고등학교떄 배운 집합과 매우 유사해서 재밋엇다 
