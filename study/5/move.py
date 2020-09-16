@@ -1,7 +1,7 @@
 from pico2d import *
 open_canvas()
 import os
-os.chdir('C:/Users/cksnd/Desktop/2학년 2학기/2d 겜프/새 폴더')
+os.chdir('C:/Users/cksnd/Desktop/2학년 2학기/2d 겜프/2d 겜프/2d/study/5')
 image=load_image('character.png')
 gra=load_image('grass.png')
 
