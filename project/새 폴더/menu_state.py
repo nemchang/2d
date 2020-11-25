@@ -22,11 +22,11 @@ def build_world():
     font = gfw.font.load(gobj.res('ENCR10B.TTF'), 40)
 
     l,b,w,h = 50,350,get_canvas_width()-100,80
-    btn = Button(l,b,w,h,font,"Play Card Version", lambda: start("enemy"))
+    btn = Button(l,b,w,h,font,"None Version", lambda: start("enemy"))
     gfw.world.add(gfw.layer.ui, btn)
 
     b -= 120
-    btn = Button(l,b,w,h,font,"Play Twice Version", lambda: start("twice"))
+    btn = Button(l,b,w,h,font,"Play magician Version", lambda: start("twice"))
     gfw.world.add(gfw.layer.ui, btn)
 
 def enter():

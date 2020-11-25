@@ -2,14 +2,14 @@ import random
 from pico2d import *
 import gfw
 import gobj
-from card import Card
+from pattern import pattern
 from skil import Skil
 from player import Player
 
 SCORE_HEIGHT = 30
 PADDING = 10
-canvas_width = PADDING + (Card.WIDTH + PADDING) *3
-canvas_height = PADDING + (Card.WIDTH + PADDING) * 4 + SCORE_HEIGHT
+canvas_width = PADDING + (pattern.WIDTH + PADDING) *3
+canvas_height = PADDING + (pattern.WIDTH + PADDING) * 4 + SCORE_HEIGHT
 
 print("Canvas Size:", (canvas_width, canvas_height))
 
@@ -17,8 +17,8 @@ score_x = PADDING
 score_y = canvas_height - SCORE_HEIGHT * 8 // 10
 SCORE_TEXT_COLOR = (255, 255, 255)
 
-start_x = 270+Card.WIDTH // 2
-start_y = Card.HEIGHT // 2
+start_x = 270+pattern.WIDTH // 2
+start_y = pattern.HEIGHT // 2 +200
 
 theme = 'twice'
 
@@ -30,21 +30,21 @@ def enter():
     gfw.world.add(gfw.layer.bg, gobj.ImageObject(theme + '/bg.png', center))
 
     x,y = start_x, start_y
-    idxs = [n + 1 for n in range(3)]*3
-    # print('before:', idxs)
-    random.shuffle(idxs)
-    # print('after: ', idxs)
+    idxs = [n + 1 for n in range(9)]
+    #print('before:', idxs)
+    #random.shuffle(idxs)
+    #print('after: ', idxs)
 
 
-    for i in range(15, -1, -5):
+    for i in range(0, 9, +3):
         print(idxs[i:i+3])
     for i in idxs:
-        c = Card(i, (x,y), theme)
+        c = pattern(i, (x,y), theme)
         gfw.world.add(gfw.layer.card, c)
-        x += Card.WIDTH+ PADDING-100
+        x += pattern.WIDTH+ PADDING-100
         if x > get_canvas_width():
             x = start_x
-            y += Card.HEIGHT + PADDING -100
+            y -= pattern.HEIGHT + PADDING -100
 
     icon = Skil(1, (200, 200), theme)
     gfw.world.add(gfw.layer.card, icon)

@@ -28,8 +28,8 @@ class Player:
             global aa
             if self.image == self.fg:
                 aa += gfw.delta_time
-                print(aa)
-                if aa>1:
+                #print(aa)
+                if aa>1.2:
                     self.image = self.bg
                     aa=0
 
@@ -40,7 +40,7 @@ class Player:
                     self.toggle()
                     if list[i] == {0, 0}:
                         list[i] = 1
-                        print(i)
+                        #print(i)
 
                     return True
 
@@ -56,11 +56,7 @@ class Player:
             hh = Player.HEIGHT // 6
             x, y = self.bg.pos
             # print(x,y)
-            for i in range(9):
-                if skil1[i] == 0:
-                    if x < 1050 and 0 < y < 350:
-                        skil1[i] = 1
-                        break
+
 
             return x - hw, y - hh, x + hw, y + hh
 

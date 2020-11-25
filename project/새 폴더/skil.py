@@ -29,7 +29,7 @@ class Skil:
                 self.toggle()
                 if list[i] == {0, 0}:
                     list[i] = 1
-                    print(i)
+                    #print(i)
 
                 return True
 
@@ -41,12 +41,8 @@ class Skil:
         hh = Skil.HEIGHT // 6
         x,y = self.bg.pos
         #print(x,y)
-        for i in range(9):
-            if skil1[i] == 0:
-                if x <1050 and 0<y<350:
-                    skil1[i]=1
-                    print(skil1)
-                    break
+
+
 
 
         return x - hw, y - hh, x + hw, y + hh
