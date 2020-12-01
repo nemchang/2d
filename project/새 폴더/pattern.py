@@ -9,8 +9,8 @@ list=[0,0,0,0,0,0,0,0,0]
 i=0
 j=0
 skil1=[0,0,0,0,0,0,0,0,0]
-
-class pattern:
+active=0
+class Pattern:
         WIDTH, HEIGHT = 200, 200
 
         def __init__(self, index, pos, theme='.'):
@@ -28,12 +28,13 @@ class pattern:
             pass
 
         def handle_event(self, e):
+            global active,list
             if e.type == SDL_MOUSEBUTTONDOWN and e.button == SDL_BUTTON_LEFT:
                 pos = gobj.mouse_xy(e)
                 x, y = self.bg.pos
                 print(x, y)
-                hw = pattern.WIDTH // 6
-                hh = pattern.HEIGHT // 6
+                hw = Pattern.WIDTH // 6
+                hh = Pattern.HEIGHT // 6
 
 
 
@@ -42,28 +43,59 @@ class pattern:
                 if gobj.pt_in_rect(pos, self.get_bb()):
                     self.toggle()
                     if 370 - hw < x < 370 + hw and 300-hh<y<300+hh:
-                        list[0] = 1
+                        if self.image==self.fg:
+                            list[0] = 1
+                        else:
+                            list[0] =0
                     elif 480 - hw < x < 480 + hw and 300-hh<y<300+hh:
-                        list[1] = 1
+                        if self.image == self.fg:
+                            list[1] = 1
+                        else:
+                            list[1] = 0
                     elif 590 - hw < x < 590 + hw and 300-hh<y<300+hh:
-                        list[2] = 1
+                        if self.image == self.fg:
+                            list[2] = 1
+                        else:
+                            list[2] = 0
                     elif 370 - hw < x < 370 + hw and 190-hh<y<190+hh:
-                        list[3] = 1
+                        if self.image == self.fg:
+                            list[3] = 1
+                        else:
+                            list[3] = 0
                     elif 480 - hw < x < 480 + hw and 190-hh<y<190+hh:
-                        list[4] = 1
+                        if self.image == self.fg:
+                            list[4] = 1
+                        else:
+                            list[4] = 0
                     elif 590 - hw < x < 590 + hw and 190-hh<y<190+hh:
-                        list[5] = 1
+                        if self.image == self.fg:
+                            list[5] = 1
+                        else:
+                            list[5] = 0
                     elif 370 - hw < x < 370 + hw and 80-hh<y<80+hh:
-                        list[6] = 1
+                        if self.image == self.fg:
+                            list[6] = 1
+                        else:
+                            list[6] = 0
                     elif 480 - hw < x < 480 + hw and 80-hh<y<80+hh:
-                        list[7] = 1
+                        if self.image == self.fg:
+                            list[7] = 1
+                        else:
+                            list[7] = 0
                     elif 590 - hw < x < 590 + hw and 80-hh<y<80+hh:
-                        list[8] = 1
+                        if self.image == self.fg:
+                            list[8] = 1
+                        else:
+                            list[8] = 0
 
 
 
 
                     print(list)
+                    if list == [1, 0, 0, 0, 1, 0, 0, 0, 1]:
+                        print("asd")
+                        active = True
+                        list=[0,0,0,0,0,0,0,0,0]
                     return True
 
             return False
@@ -72,8 +104,8 @@ class pattern:
             self.image = self.bg if self.image == self.fg else self.fg
 
         def get_bb(self):
-            hw = pattern.WIDTH // 6
-            hh = pattern.HEIGHT // 6
+            hw = Pattern.WIDTH // 6
+            hh = Pattern.HEIGHT // 6
             x, y = self.bg.pos
 
 
@@ -81,6 +113,9 @@ class pattern:
 
         def remove(self):
             gfw.world.remove(self)
+
+
+
 
 
     # def __del__(self):

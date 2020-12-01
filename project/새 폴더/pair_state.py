@@ -2,14 +2,20 @@ import random
 from pico2d import *
 import gfw
 import gobj
-from pattern import pattern
+from pattern import Pattern
+import pattern
 from skil import Skil
+import skil
+from skileffect import Skileffect
 from player import Player
 
 SCORE_HEIGHT = 30
 PADDING = 10
-canvas_width = PADDING + (pattern.WIDTH + PADDING) *3
-canvas_height = PADDING + (pattern.WIDTH + PADDING) * 4 + SCORE_HEIGHT
+canvas_width = PADDING + (Pattern.WIDTH + PADDING) * 3
+canvas_height = PADDING + (Pattern.WIDTH + PADDING) * 4 + SCORE_HEIGHT
+aa=0
+skilefx=500
+skilefy=600
 
 print("Canvas Size:", (canvas_width, canvas_height))
 
@@ -17,8 +23,8 @@ score_x = PADDING
 score_y = canvas_height - SCORE_HEIGHT * 8 // 10
 SCORE_TEXT_COLOR = (255, 255, 255)
 
-start_x = 270+pattern.WIDTH // 2
-start_y = pattern.HEIGHT // 2 +200
+start_x = 270 + Pattern.WIDTH // 2
+start_y = Pattern.HEIGHT // 2 + 200
 
 theme = 'twice'
 
@@ -39,19 +45,25 @@ def enter():
     for i in range(0, 9, +3):
         print(idxs[i:i+3])
     for i in idxs:
-        c = pattern(i, (x,y), theme)
+        c = Pattern(i, (x, y), theme)
         gfw.world.add(gfw.layer.card, c)
-        x += pattern.WIDTH+ PADDING-100
+        x += Pattern.WIDTH + PADDING - 100
         if x > get_canvas_width():
             x = start_x
-            y -= pattern.HEIGHT + PADDING -100
+            y -= Pattern.HEIGHT + PADDING - 100
 
     icon = Skil(1, (200, 200), theme)
     gfw.world.add(gfw.layer.card, icon)
 
 
+
     pla=Player(1, (550, 600), theme)
+
+
+
+
     gfw.world.add(gfw.layer.card, pla)
+
 
     global last_card
     last_card = None
@@ -72,6 +84,29 @@ def enter():
 
 def update():
     gfw.world.update()
+    global aa,skilefx,skilefy
+    if skil.active==True or pattern.active==True:
+        aa += gfw.delta_time
+
+
+        skilx = Skileffect(1, (skilefx, skilefy), theme)
+        gfw.world.add(gfw.layer.card, skilx)
+        gfw.world.remove(skilx)
+        if aa > 1.2:
+            aa = 0
+            skilefx = 550
+            skil.active = 0
+            pattern.active = 0
+        skilefx = skilefx - aa * 7
+
+    else:
+        skilefx = 550
+        aa=0
+
+
+
+
+
 
     global score
     if gfw.world.count_at(gfw.layer.card) > 0:

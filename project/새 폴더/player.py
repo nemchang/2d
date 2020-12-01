@@ -2,6 +2,7 @@ import random
 from pico2d import *
 import gfw
 import gobj
+import skil
 import time
 #1 767 987 67 287
 list=[{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0}]
@@ -26,21 +27,24 @@ class Player:
 
         def update(self):
             global aa
+
+            if skil.active==True:
+                self.image = self.fg
+
             if self.image == self.fg:
                 aa += gfw.delta_time
                 #print(aa)
                 if aa>1.2:
                     self.image = self.bg
                     aa=0
+                    skil.active=0
 
         def handle_event(self, e):
             if e.type == SDL_MOUSEBUTTONDOWN and e.button == SDL_BUTTON_LEFT:
                 pos = gobj.mouse_xy(e)
                 if gobj.pt_in_rect(pos, self.get_bb()):
                     self.toggle()
-                    if list[i] == {0, 0}:
-                        list[i] = 1
-                        #print(i)
+
 
                     return True
 
