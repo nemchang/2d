@@ -4,7 +4,7 @@ from gobj import *
 
 LBTN_DOWN = (SDL_MOUSEBUTTONDOWN, SDL_BUTTON_LEFT)
 LBTN_UP   = (SDL_MOUSEBUTTONUP,   SDL_BUTTON_LEFT)
-
+playtype=0
 class BtnBg:
     def __init__(self, image):
         self.image = gfw.image.load(image)
@@ -39,6 +39,12 @@ class BtnBg:
 
 class Button:
     def __init__(self, l, b, w, h, font, text, callback, btnClass=None):
+        global playtype
+
+
+
+
+
         self.l, self.b, self.w, self.h = l, b, w, h
         self.callback = callback
         self.set_text(font, text)
@@ -59,10 +65,16 @@ class Button:
         # draw_rectangle(self.l, self.b, self.l + self.w, self.b + self.h)
 
     def handle_event(self, e):
+        global playtype
         pair = (e.type, e.button)
         if self.mouse_point is None:
             if pair == LBTN_DOWN:
                 if pt_in_rect(mouse_xy(e), self.get_bb()):
+                    if self.b==350:
+                        playtype=1
+                    elif self.b==230:
+                        playtype=2
+
                     self.mouse_point = mouse_xy(e)
                     self.backup = self.text
                     self.text = "Pressed"
@@ -70,7 +82,9 @@ class Button:
 
                     return True
             if e.type == SDL_MOUSEMOTION:
+
                 mpos = mouse_xy(e)
+
                 in_rect = pt_in_rect(mpos, self.get_bb())
                 if in_rect:
                     self.bg = BtnBg.get('blue', 'hover')

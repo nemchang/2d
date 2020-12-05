@@ -9,8 +9,8 @@ import skil
 from skileffect import Skileffect
 from skileffect import Skileffect2
 from player import Player
-from enemy import Enemy
-import enemy
+from enemy2 import Enemy
+import enemy2
 import highscore
 
 
@@ -22,11 +22,11 @@ aa=0
 Ehp=100
 skilefx=500
 skilefy=450
-TIME=1000
+TIME=100
 score=0
 print("Canvas Size:", (canvas_width, canvas_height))
 
-score_x = canvas_width/2 - 70
+score_x = canvas_width/2 - 60
 score_y = canvas_height - SCORE_HEIGHT * 8 // 10
 SCORE_TEXT_COLOR = (255, 255, 255)
 
@@ -37,8 +37,8 @@ theme = 'lv1'
 
 def enter():
 
-    enemy.dead=0
-    enemy.life=100
+    enemy2.dead=0
+
 
 
 
@@ -79,7 +79,7 @@ def enter():
 
 
     gfw.world.add(gfw.layer.card, pla)
-    ene = Enemy(1, (150, 480), theme)
+    ene = Enemy(1, (150, 450), theme)
     gfw.world.add(gfw.layer.card, ene)
 
 
@@ -91,7 +91,7 @@ def enter():
 
 
     global TIME, font
-    TIME = 1000
+    TIME = 10000
     font = gfw.font.load(gobj.res('ENCR10B.TTF'), 20)
     highscore.load()
 
@@ -99,7 +99,9 @@ def enter():
 
 
 
-    bg_music = load_music(gobj.res('bg1.mp3'))
+
+
+    bg_music = load_music(gobj.res('bg3.mp3'))
     bg_music.set_volume(60)
     flip_wav = load_wav(gobj.res('pipe.wav'))
     bg_music.repeat_play()
@@ -113,7 +115,9 @@ def update():
     global lose_image,win_image,TIME,Ehp
     count=0
     center=(320,640)
-    Ehp = enemy.life
+    Ehp = enemy2.life
+
+
 
 
 
@@ -134,22 +138,12 @@ def update():
 
     gfw.world.update()
 
-
-
-
-
-
-
-
-    if skil.active==True or pattern.active==True:
+    if skil.active == True or pattern.active == True:
         aa += gfw.delta_time
 
         skilx = Skileffect(1, (skilefx, skilefy), theme)
         gfw.world.add(gfw.layer.card, skilx)
         gfw.world.remove(skilx)
-
-
-
 
         if aa >= 1.2:
             aa = 0
@@ -157,7 +151,6 @@ def update():
             skil.active = 0
             pattern.active = 0
             pattern.skil = 0
-
 
         skilefx = skilefx - aa * 7
     else:
@@ -180,15 +173,13 @@ def update():
 
 
     if gfw.world.count_at(gfw.layer.card) > 0:
-        if TIME<=1:
+        if TIME <= 1:
             return
-
-
         else:
             TIME -= gfw.delta_time*30
 
         # print(gfw.world.count_at(gfw.layer.card), score, gfw.delta_time, gfw.frame_interval)
-    if enemy.dead==1:
+    if enemy2.dead==1:
         highscore.add(TIME)
 
 def draw():
@@ -199,13 +190,13 @@ def draw():
     global TIME, font
 
     if Ehp<=0:
-        font.draw(90, 580, "HP: %.1f" % Ehp, SCORE_TEXT_COLOR)
+        font.draw(100, 550, "HP: %.1f" % Ehp, SCORE_TEXT_COLOR)
         return
 
 
 
     else:
-        font.draw(90, 580, "HP: %.1f" % Ehp, SCORE_TEXT_COLOR)
+        font.draw(100, 550, "HP: %.1f" % Ehp, SCORE_TEXT_COLOR)
         font.draw(score_x, score_y, "SCORE: %.1f" % TIME, SCORE_TEXT_COLOR)
 
 

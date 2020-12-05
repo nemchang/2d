@@ -81,7 +81,28 @@ class ImageObject:
         self.__dict__.update(dict)
         self.image = gfw.image.load(res(self.imageName))
     # def __del__(self):
+    #     print('Del Img:', self)\
+
+
+class ImageObject2:
+    def __init__(self, imageName, pos):
+        self.imageName = imageName
+        self.image = gfw.image.load(res(imageName))
+        self.pos = pos
+    def draw(self):
+        self.image.draw(*self.pos)
+    def update(self):
+        pass
+    def __getstate__(self):
+        dict = self.__dict__.copy()
+        del dict['image']
+        return dict
+    def __setstate__(self, dict):
+        self.__dict__.update(dict)
+        self.image = gfw.image.load(res(self.imageName))
+    # def __del__(self):
     #     print('Del Img:', self)
+
 
 class AnimObject:
     def __init__(self, imageName, pos, fps, fcount=0):
@@ -115,6 +136,25 @@ class AnimObject2:
         self.width = self.image.w // fcount
         self.height = self.image.h
         self.fcount = fcount
+    def draw(self):
+        elapsed = get_time() - self.time
+        fidx = round(elapsed * self.fps) % self.fcount
+        sx = self.width * fidx
+        self.image.clip_draw(sx, 0, self.width, self.height, *self.pos)
+    def update(self):
+        pass
+
+class AnimObject3:
+    def __init__(self, imageName, pos, fps, fcount=0):
+        self.time = get_time()
+        self.image = gfw.image.load(RES_DIR + '/' + imageName)
+        self.pos = pos
+        self.fps = fps/2
+        if fcount == 0:
+            fcount = 4
+        self.width = self.image.w // 2+5
+        self.height = self.image.h
+        self.fcount = fcount-2
     def draw(self):
         elapsed = get_time() - self.time
         fidx = round(elapsed * self.fps) % self.fcount

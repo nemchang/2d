@@ -10,7 +10,7 @@ i=0
 j=0
 active=0
 skil1=[0,0,0,0,0,0,0,0,0]
-
+aa=0
 class Skil:
     WIDTH,HEIGHT = 200,200
     def __init__(self, index, pos, theme='.'):
@@ -40,7 +40,7 @@ class Skil:
 
 
     def toggle(self):
-        self.image = self.bg if self.image == self.fg else self.fg
+        self.image = self.bg
     def get_bb(self):
         hw = Skil.WIDTH // 6
         hh = Skil.HEIGHT // 6

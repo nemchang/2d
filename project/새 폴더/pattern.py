@@ -2,13 +2,14 @@ import random
 from pico2d import *
 import gfw
 import gobj
-
+import enemy
 #1 767 987 67 287
 list=[0,0,0,0,0,0,0,0,0]
-
+aa=0
 i=0
 j=0
-skil1=[0,0,0,0,0,0,0,0,0]
+skil=0
+skildmg=0
 active=0
 class Pattern:
         WIDTH, HEIGHT = 200, 200
@@ -28,7 +29,8 @@ class Pattern:
             pass
 
         def handle_event(self, e):
-            global active,list
+            global active,list,skildmg,skil
+
             if e.type == SDL_MOUSEBUTTONDOWN and e.button == SDL_BUTTON_LEFT:
                 pos = gobj.mouse_xy(e)
                 x, y = self.bg.pos
@@ -92,11 +94,40 @@ class Pattern:
 
 
                     print(list)
-                    if list == [1, 0, 0, 0, 1, 0, 0, 0, 1]:
-                        print("asd")
+
+                    if list == [1, 1, 1, 1, 1, 1, 1, 1, 1]:
                         active = True
+                        skil=9
+                        skildmg = 300
+                        list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+
+
+                    elif list == [1, 1, 1, 0, 0, 1, 0, 0, 1]:
+                        active = True
+                        skildmg = 100
+                        skil = 5
+                        list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+                    elif list == [1, 1, 1, 0, 0, 0, 0, 0, 0]:
+                        active = True
+                        skildmg = 50
+                        skil = 2
+                        list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+
+                    elif list == [1, 0, 0, 0, 1, 0, 0, 0, 1]:
+                        active = True
+                        skildmg=50
+                        skil=3
                         list=[0,0,0,0,0,0,0,0,0]
+
+
+
+
+
                     return True
+
 
             return False
 
